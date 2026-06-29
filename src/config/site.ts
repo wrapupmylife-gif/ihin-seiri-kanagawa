@@ -53,7 +53,7 @@ export const site = {
     "https://docs.google.com/forms/d/e/1FAIpQLScUd4Eu6tJMKmI-OXGM__ffSfDj3rnD_l1--Vn0tAKtG36-ag/viewform",
   // 運営者情報（運営者ページ・フッターに表示）
   operator: {
-    name: "運営者名（個人/屋号）",
+    name: "かながわ終活ナビ",
     contact: "contact@example.com",
   },
 } as const;
