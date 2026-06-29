@@ -64,6 +64,9 @@ const jsonLd = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    {site.googleSiteVerification && (
+      <meta name="google-site-verification" content={site.googleSiteVerification} />
+    )}
     <link rel="canonical" href={canonical} />
     {noindex
       ? <meta name="robots" content="noindex, nofollow" />
