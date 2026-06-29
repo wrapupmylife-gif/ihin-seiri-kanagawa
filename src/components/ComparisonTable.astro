@@ -1,0 +1,131 @@
+---
+// =============================================================
+// 比較表（= 編集部による中立情報）。
+// 対応エリアを site.regions の区分に分けて、区分ごとに表を出す。
+// ランキングではない点を明示し、並び順の基準も書く。
+// sponsored な事業者には [PR] を付ける（有料掲載が混ざる場合の保険）。
+// =============================================================
+import { providers } from "../data/providers";
+import { site } from "../config/site";
+import PrBadge from "./PrBadge.astro";
+import AdSlot from "./AdSlot.astro";
+
+// 区分ごとに「その区分に対応する事業者」を order 昇順で抽出。
+const groups = site.regions.map((region) => ({
+  region,
+  rows: [...providers]
+    .filter((p) => p.regions.includes(region.id))
+    .sort((a, b) => a.order - b.order),
+}));
+---
+
+<div class="compare">
+  {groups.map(({ region, rows }) => (
+    <section id={`area-${region.id}`} class="area-block">
+      <header class="area-head">
+        <h3>{region.name}</h3>
+        <p class="area-cities">対応市区町村：{region.cities.join("・")}</p>
+      </header>
+
+      {rows.length === 0 ? (
+        <p class="area-empty">このエリアに対応する掲載事業者は現在ありません。</p>
+      ) : (
+        <div class="table-wrap">
+          <table>
+            <caption>
+              {region.name}の遺品整理・生前整理サービス比較（編集部調べ）
+              <span class="cap-note">
+                ※ 各社公式サイトの公開情報（2026年6月時点）をもとにした中立的な一覧です。掲載順は事業者名の五十音順で、
+                優劣・ランキングを示すものではありません。料金は目安で、実費は要見積です。最新情報は各公式サイトでご確認ください。
+              </span>
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">事業者</th>
+                <th scope="col">対応エリア（出張範囲）</th>
+                <th scope="col">料金目安</th>
+                <th scope="col">対応内容</th>
+                <th scope="col">資格・許可</th>
+                <th scope="col">見積方法</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((p) => (
+                <tr>
+                  <th scope="row" class="name-cell">
+                    {p.url ? (
+                      <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a>
+                    ) : (
+                      p.name
+                    )}
+                    {p.sponsored && <PrBadge label="PR" />}
+                  </th>
+                  <td>{p.areas.join("・")}</td>
+                  <td>{p.priceFrom}</td>
+                  <td>{p.services.join("・")}</td>
+                  <td>{p.license}</td>
+                  <td>{p.estimate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <!-- このエリア向けの広告枠（有料掲載・「広告」表記つき） -->
+      <AdSlot slot="area" region={region.id} />
+    </section>
+  ))}
+</div>
+
+<style>
+  .compare { display: grid; gap: 40px; }
+  .area-block { scroll-margin-top: 90px; }
+  .area-head { margin: 0 0 14px; }
+  .area-head h3 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+    border-left: 4px solid var(--sei);
+    padding-left: 12px;
+  }
+  .area-cities { margin: 8px 0 0; font-size: 0.86rem; color: var(--ink-soft); }
+  .area-empty {
+    margin: 0;
+    padding: 18px;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.9rem; }
+  caption {
+    text-align: left;
+    padding: 16px 18px;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--line);
+  }
+  .cap-note {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  th, td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  thead th { background: #fff; font-size: 0.82rem; color: var(--ink-soft); white-space: nowrap; }
+  .name-cell { font-weight: 700; color: var(--ink); }
+  .name-cell a { color: var(--sei); text-decoration: none; border-bottom: 1px solid transparent; }
+  .name-cell a:hover { border-bottom-color: currentColor; }
+  .name-cell :global(.pr-badge) { margin-left: 6px; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td, tbody tr:nth-child(even) th { background: rgba(255,255,255,0.4); }
+</style>

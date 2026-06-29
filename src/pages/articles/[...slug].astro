@@ -1,0 +1,111 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { site } from "../../config/site";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles", ({ data }) => !data.draft);
+  return articles.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"articles">;
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const d = entry.data;
+
+const pageUrl = new URL(`/articles/${entry.slug}/`, site.url).href;
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+    url: pageUrl,
+    headline: d.title,
+    description: d.description,
+    inLanguage: "ja",
+    articleSection: d.category,
+    datePublished: d.publishedAt,
+    dateModified: d.updatedAt ?? d.publishedAt,
+    author: { "@type": "Organization", name: d.author, url: site.url },
+    publisher: { "@id": `${site.url}#organization` },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "トップ", item: site.url },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "記事一覧",
+        item: new URL("/articles/", site.url).href,
+      },
+      { "@type": "ListItem", position: 3, name: d.title, item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  ogType="article"
+  publishedTime={d.publishedAt}
+  modifiedTime={d.updatedAt ?? d.publishedAt}
+>
+  <article class="section wrap article">
+    <nav class="crumbs" aria-label="パンくずリスト">
+      <a href="/">トップ</a>
+      <span aria-hidden="true">›</span>
+      <a href="/articles/">記事一覧</a>
+      <span aria-hidden="true">›</span>
+      <span class="current">{d.category}</span>
+    </nav>
+    <p class="eyebrow">{d.category}{d.area ? `・${d.area}` : ""}</p>
+    <h1>{d.title}</h1>
+    <p class="meta muted">
+      公開: {d.publishedAt}
+      {d.updatedAt && d.updatedAt !== d.publishedAt && <> ／ 更新: {d.updatedAt}</>}
+      ／ {d.author}
+    </p>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <!-- 記事末の広告枠（有料掲載・PR表記つき） -->
+    <AdSlot slot="article-bottom" />
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>
+
+<style>
+  .article { max-width: 760px; }
+  .crumbs { font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 14px; }
+  .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .crumbs a:hover { color: var(--sei); }
+  .crumbs span { margin: 0 6px; }
+  .crumbs .current { margin: 0; color: var(--ink); }
+  .meta { margin-top: 4px; }
+  .prose :global(h2) { border-bottom: 1px solid var(--line); padding-bottom: 0.3em; }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--sei);
+    margin: 1.6em 0;
+    padding: 0.6em 1.2em;
+    background: var(--paper-deep);
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .prose :global(ol), .prose :global(ul) { padding-left: 1.4em; }
+  .prose :global(li) { margin: 0.4em 0; }
+  .prose :global(hr) { border: none; border-top: 1px solid var(--line); margin: 2.4em 0; }
+  .prose :global(em) { color: var(--ink-soft); }
+</style>

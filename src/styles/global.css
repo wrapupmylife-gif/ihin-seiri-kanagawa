@@ -1,0 +1,77 @@
+/* =============================================================
+   デザイントークン
+   主題: 遺品整理・生前整理（神奈川）。読者は遺族や高齢の方が多い。
+   方針: 落ち着き・品位・信頼。派手な販促色は避け、可読性を優先。
+   配色: 和の落ち着いた藍墨 × 生成りの紙 × 生前整理を表す若苗色。
+   書体: 見出しに明朝（品位）、本文にゴシック（可読性・高齢者配慮）。
+   ============================================================= */
+:root {
+  --paper: #f5f2ec;      /* 生成りの紙 */
+  --paper-deep: #ece7dd; /* セクション区切りの少し濃い紙 */
+  --ink: #20303f;        /* 藍墨色: 見出し・本文 */
+  --ink-soft: #5a6470;   /* 補助テキスト */
+  --ai: #294b6b;         /* 藍: リンク・信頼の主役色 */
+  --sei: #7e9a86;        /* 若苗色: 生前整理・再生のアクセント */
+  --line: #e0dace;       /* 罫線 */
+  --pr: #a4742c;         /* 広告/PRバッジ: 編集色と明確に分ける温かみのある黄土 */
+  --pr-bg: #f6efe1;
+
+  --max: 880px;
+  --radius: 6px;
+  --font-serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.5; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.5rem); letter-spacing: 0.02em; }
+h2 { font-size: clamp(1.3rem, 3.5vw, 1.7rem); margin-top: 2.4em; }
+h3 { font-size: 1.2rem; margin-top: 1.8em; }
+
+a { color: var(--ai); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--ai); outline-offset: 2px; }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--sei);
+  font-weight: 700;
+}
+
+.muted { color: var(--ink-soft); font-size: 0.92rem; }
+
+.btn {
+  display: inline-block;
+  background: var(--ai);
+  color: #fff;
+  padding: 0.7em 1.4em;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.btn:hover { background: var(--ink); color: #fff; }
+
+.section { padding: 56px 0; }
+.section--deep { background: var(--paper-deep); }

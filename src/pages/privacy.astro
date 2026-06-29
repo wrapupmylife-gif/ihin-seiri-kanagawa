@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config/site";
+---
+
+<BaseLayout title="プライバシーポリシー" description="当サイトのプライバシーポリシーです。" noindex={true}>
+  <section class="section wrap" style="max-width:760px">
+    <p class="eyebrow">PRIVACY</p>
+    <h1>プライバシーポリシー</h1>
+    <p>{site.name}（以下、当サイト）における個人情報・アクセス情報の取り扱いについて定めます。</p>
+
+    <h2>アクセス解析</h2>
+    <p>当サイトはアクセス解析ツールを利用する場合があります。これらはトラフィックデータ収集のためCookieを使用することがあります。ブラウザ設定でCookieを無効化できます。</p>
+
+    <h2>広告について</h2>
+    <p>当サイトは広告（有料掲載）を含みます。広告の扱いは<a href="/disclosure/">広告・PR表記ポリシー</a>をご覧ください。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本ポリシーに関するお問い合わせは <a href={`mailto:${site.operator.contact}`}>{site.operator.contact}</a> までご連絡ください。</p>
+
+    <p class="muted" style="margin-top:24px">※ ひな形です。実際の運用（解析ツール名・広告配信事業者など）に合わせて加筆してください。</p>
+  </section>
+</BaseLayout>

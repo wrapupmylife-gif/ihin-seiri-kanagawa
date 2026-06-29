@@ -1,0 +1,112 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** 編集記事ページでは false、広告ページ等では noindex にしたい場合に使う */
+  noindex?: boolean;
+  /** OGPの種別。記事ページでは "article" を渡す */
+  ogType?: "website" | "article";
+  /** 記事の公開日・更新日（ogType="article" のとき出力） */
+  publishedTime?: string;
+  modifiedTime?: string;
+  /** OGP画像（個別指定。未指定なら site.ogImage） */
+  image?: string;
+}
+
+const {
+  title,
+  description = site.description,
+  noindex = false,
+  ogType = "website",
+  publishedTime,
+  modifiedTime,
+  image,
+} = Astro.props;
+
+const pageTitle = title ? `${title}｜${site.name}` : `${site.name}｜${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImageRel = image || site.ogImage;
+const ogImage = ogImageRel ? new URL(ogImageRel, site.url).href : "";
+
+// 構造化データ（サイト全体）。WebSite と運営者(Organization)。
+const orgId = `${site.url}#organization`;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}#website`,
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    inLanguage: "ja",
+    publisher: { "@id": orgId },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": orgId,
+    name: site.name,
+    url: site.url,
+    ...(ogImage ? { logo: ogImage } : {}),
+  },
+];
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large" />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- OGP -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogType === "article" && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {ogType === "article" && modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime} />
+    )}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Fonts: 見出し明朝 + 本文ゴシック -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 構造化データ（サイト全体：WebSite + 運営者） -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

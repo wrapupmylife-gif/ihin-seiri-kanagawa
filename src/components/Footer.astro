@@ -1,0 +1,42 @@
+---
+import { site } from "../config/site";
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="name">{site.name}</p>
+    <p class="muted">{site.tagline}</p>
+
+    <nav class="links" aria-label="フッターナビゲーション">
+      <a href="/about/">運営者情報</a>
+      <a href="/disclosure/">広告・PR表記ポリシー</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/advertise/">掲載をご希望の事業者へ</a>
+    </nav>
+
+    <p class="muted note">
+      当サイトには広告（有料掲載）が含まれます。広告には「広告」「PR」と明示しています。
+      比較表は編集部が公開情報をもとに作成した中立的な情報で、掲載順は料金やランキングを示すものではありません。
+      料金・サービス内容は変動する場合があるため、最終的な条件は各事業者へご確認ください。
+    </p>
+    <p class="muted">© {new Date().getFullYear()} {site.operator.name}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: var(--paper-deep);
+    padding: 40px 0;
+    margin-top: 64px;
+  }
+  .name { font-family: var(--font-serif); font-weight: 600; margin: 0 0 4px; }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 18px 0;
+  }
+  .links a { font-size: 0.9rem; }
+  .note { border-left: 3px solid var(--line); padding-left: 12px; }
+</style>

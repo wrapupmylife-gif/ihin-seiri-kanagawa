@@ -1,0 +1,24 @@
+---
+// 「広告 / PR」を示すバッジ。有料掲載には必ず付ける（ステマ規制対応）。
+interface Props {
+  label?: "広告" | "PR";
+}
+const { label = "広告" } = Astro.props;
+---
+
+<span class="pr-badge">{label}</span>
+
+<style>
+  .pr-badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: var(--pr);
+    padding: 2px 8px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+</style>

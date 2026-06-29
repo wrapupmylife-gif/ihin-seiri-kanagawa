@@ -1,0 +1,172 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AdSlot from "../components/AdSlot.astro";
+import ComparisonTable from "../components/ComparisonTable.astro";
+import { getCollection } from "astro:content";
+import { site } from "../config/site";
+
+const latest = (await getCollection("articles", ({ data }) => !data.draft))
+  .sort((a, b) => Date.parse(b.data.publishedAt) - Date.parse(a.data.publishedAt))
+  .slice(0, 4);
+
+// よくある質問（表示内容と構造化データを一致させる）
+const faqs = [
+  {
+    q: "遺品整理の費用はどのくらいかかりますか？",
+    a: "費用は間取り・荷物の量・作業人数・搬出のしやすさ（エレベーターの有無など）で変わります。目安として、ワンルームで数万円台から、戸建てでは数十万円規模になることもあります。正確な金額は訪問見積もりで内訳をご確認ください。",
+  },
+  {
+    q: "対応エリアはどこですか？",
+    a: "本サイトでは神奈川県を「横浜・川崎」「湘南（鎌倉〜平塚）」「県央（厚木・海老名・伊勢原）」「西湘（大磯以西）」の4区分に分けて、エリアごとに事業者を比較できます。",
+  },
+  {
+    q: "比較表の掲載順はランキングですか？",
+    a: "いいえ。比較表の掲載順は事業者名の五十音順で、優劣やランキングを示すものではありません。有料掲載（広告）は「広告」「PR」と明示して、中立の編集情報と区別しています。",
+  },
+  {
+    q: "業者を選ぶときの注意点は？",
+    a: "書面での見積もりと追加料金の有無、廃棄物処理や古物商などの許可、遺品整理士の在籍、貴重品が出てきたときの対応などを確認しましょう。2〜3社の相見積もりがおすすめです。",
+  },
+  {
+    q: "生前整理にも対応していますか？",
+    a: "多くの掲載事業者が生前整理に対応しています。各エリアの比較表の「対応内容」欄で対応の有無を確認できます。",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<BaseLayout>
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">{site.area}の遺品整理・生前整理</p>
+      <h1>急がなくていい。<br />まず、落ち着いて選ぶために。</h1>
+      <p class="lead">
+        対応エリア・料金の目安・対応内容を、編集部がまとめた中立の一覧で見比べられます。
+        相見積もりの判断材料に。
+      </p>
+      <a class="btn" href="#compare">事業者を比較する</a>
+    </div>
+  </section>
+
+  <!-- トップ広告枠（有料掲載・PR表記つき） -->
+  <div class="wrap">
+    <AdSlot slot="top" />
+  </div>
+
+  <!-- 比較表（中立の編集情報） -->
+  <section id="compare" class="section wrap">
+    <p class="eyebrow">COMPARE</p>
+    <h2>神奈川県の遺品整理・生前整理サービス比較</h2>
+    <p class="muted intro">
+      対応エリアを<strong>{site.regions.length}区分</strong>に分けて一覧にしました。お住まいの地域から比較できます。
+      掲載順は登録順で、ランキングや優劣を示すものではありません。
+      実際の料金・対応可否は各事業者にご確認ください。
+    </p>
+
+    <!-- エリア区分のショートカット -->
+    <ul class="area-nav">
+      {site.regions.map((r) => (
+        <li>
+          <a href={`#area-${r.id}`}>
+            <span class="area-nav__name">{r.name}</span>
+            <span class="area-nav__cities">{r.summary}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <ComparisonTable />
+  </section>
+
+  <!-- よくある質問（FAQ構造化データつき） -->
+  <section id="faq" class="section wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>よくある質問</h2>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- 新着記事 -->
+  <section class="section section--deep">
+    <div class="wrap">
+      <p class="eyebrow">ARTICLES</p>
+      <h2>片付けと終活のヒント 〜遺品整理・生前整理のブログ〜</h2>
+      <ul class="cards">
+        {latest.map((a) => (
+          <li>
+            <a href={`/articles/${a.slug}/`}>
+              <span class="cat">{a.data.category}</span>
+              <span class="ttl">{a.data.title}</span>
+              <span class="muted">{a.data.description}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p style="margin-top:24px"><a href="/articles/">記事一覧を見る →</a></p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .hero h1 { margin: 8px 0 18px; }
+  .lead { font-size: 1.05rem; color: var(--ink-soft); max-width: 38em; margin: 0 0 28px; }
+  .intro { max-width: 44em; margin: 8px 0 28px; }
+
+  .area-nav {
+    list-style: none; padding: 0; margin: 0 0 36px;
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .area-nav a {
+    display: block; height: 100%;
+    padding: 16px 18px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    text-decoration: none; transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .area-nav a:hover { border-color: var(--sei); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .area-nav__name {
+    display: block; font-family: var(--font-serif); font-size: 1.1rem;
+    color: var(--ink); font-weight: 700;
+  }
+  .area-nav__cities { display: block; margin-top: 6px; font-size: 0.84rem; color: var(--ink-soft); }
+
+  .faq { margin-top: 24px; border-top: 1px solid var(--line); }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    cursor: pointer; list-style: none;
+    padding: 18px 36px 18px 0; position: relative;
+    font-family: var(--font-serif); font-size: 1.08rem; color: var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "＋"; position: absolute; right: 4px; top: 16px;
+    color: var(--sei); font-weight: 700;
+  }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item p { margin: 0 0 18px; color: var(--ink-soft); font-size: 0.96rem; }
+
+  .cards { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .cards li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+  .cards a { display: block; padding: 20px; text-decoration: none; }
+  .cat { font-size: 0.74rem; color: var(--sei); font-weight: 700; letter-spacing: 0.08em; }
+  .ttl { display: block; font-family: var(--font-serif); font-size: 1.08rem; color: var(--ink); margin: 6px 0 8px; line-height: 1.5; }
+</style>

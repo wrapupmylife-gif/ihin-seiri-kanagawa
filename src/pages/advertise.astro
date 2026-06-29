@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config/site";
+---
+
+<BaseLayout
+  title="掲載をご希望の事業者へ"
+  description="神奈川県の遺品整理・生前整理事業者さま向けの広告掲載のご案内です。"
+>
+  <section class="section wrap" style="max-width:760px">
+    <p class="eyebrow">FOR PARTNERS</p>
+    <h1>掲載をご希望の事業者さまへ</h1>
+    <p class="lead muted">
+      {site.name}は、{site.area}で遺品整理・生前整理を検討する方が、
+      落ち着いて事業者を選べることを目的とした情報サイトです。
+      広告枠への掲載をご検討の事業者さまは、以下をご覧ください。
+    </p>
+
+    <h2>掲載メニュー（例）</h2>
+    <ul>
+      <li>トップページ上部の広告枠</li>
+      <li>記事内・記事末の広告枠</li>
+      <li>エリア特集ページのスポンサー枠</li>
+    </ul>
+    <p class="muted">
+      ※ いずれの枠も「広告」「PR」と明示して掲載します。比較表（編集コンテンツ）への
+      掲載順を金銭で操作することはいたしません。
+    </p>
+
+    <h2>掲載までの流れ</h2>
+    <ol>
+      <li>お問い合わせ（下記メール）</li>
+      <li>掲載枠・期間・条件のご相談</li>
+      <li>原稿・リンク先のご確認</li>
+      <li>掲載開始</li>
+    </ol>
+
+    <h2>お問い合わせ</h2>
+    <p>
+      掲載に関するお問い合わせは
+      <a href={`mailto:${site.operator.contact}`}>{site.operator.contact}</a>
+      までご連絡ください。
+    </p>
+    <!--
+      営業着地用のページ。メール導線にしてあるが、
+      問い合わせフォームを置く場合は外部フォーム(Google Form等)に
+      リンクするのが静的サイトでは簡単。フォーム埋め込みは送信処理が必要。
+    -->
+  </section>
+</BaseLayout>

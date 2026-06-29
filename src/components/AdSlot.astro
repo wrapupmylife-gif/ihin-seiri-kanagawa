@@ -1,0 +1,60 @@
+---
+// =============================================================
+// 広告枠（有料掲載）。slot を渡すと src/data/ads.ts から該当広告を描画。
+// 必ず「広告」バッジ + 「有料掲載」の注記 + rel="sponsored" を出す。
+// これにより、編集記事との見分けがつき、ステマ規制・景表法に対応する。
+// =============================================================
+import PrBadge from "./PrBadge.astro";
+import { adsForSlot, adsForArea, type Ad } from "../data/ads";
+
+interface Props {
+  slot: Ad["slot"];
+  // slot="area" のとき、対象エリア区分（site.ts の regions[].id）を渡す。
+  region?: string;
+}
+const { slot, region } = Astro.props;
+const items = slot === "area" && region ? adsForArea(region) : adsForSlot(slot);
+---
+
+{items.length > 0 && (
+  <aside class="ad-region" aria-label="広告">
+    {items.map((ad) => (
+      <div class="ad-card">
+        <div class="ad-head">
+          <PrBadge label="広告" />
+          <span class="ad-meta">提供：{ad.advertiser}（有料掲載）</span>
+        </div>
+        <p class="ad-headline">{ad.headline}</p>
+        <p class="ad-body">{ad.body}</p>
+        <a class="btn" href={ad.href} rel="sponsored noopener" target="_blank">
+          {ad.ctaLabel}
+        </a>
+      </div>
+    ))}
+  </aside>
+)}
+
+<style>
+  .ad-region { margin: 32px 0; }
+  .ad-card {
+    background: var(--pr-bg);
+    border: 1px solid #e7d9bd;
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .ad-card + .ad-card { margin-top: 16px; }
+  .ad-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .ad-meta { font-size: 0.78rem; color: var(--ink-soft); }
+  .ad-headline {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .ad-body { margin: 0 0 16px; font-size: 0.95rem; color: var(--ink-soft); }
+</style>

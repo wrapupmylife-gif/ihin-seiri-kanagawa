@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# サイトマップ（公開ドメインに合わせて自動生成されます）
+# ★公開時は astro.config.mjs の site を実ドメインに変更してください
+Sitemap: https://example.com/sitemap-index.xml
