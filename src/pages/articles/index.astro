@@ -1,9 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedArticles } from "../../utils/posts";
 
-const articles = (await getCollection("articles", ({ data }) => !data.draft))
-  .sort((a, b) => Date.parse(b.data.publishedAt) - Date.parse(a.data.publishedAt));
+const articles = await getPublishedArticles();
 ---
 
 <BaseLayout title="記事一覧" description="遺品整理・生前整理の進め方や費用、業者選びに関する解説記事の一覧です。">

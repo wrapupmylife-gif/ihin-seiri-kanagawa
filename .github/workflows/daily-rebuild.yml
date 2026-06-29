@@ -1,0 +1,26 @@
+name: Daily rebuild (date-based publishing)
+
+# 公開日(publishedAt)が来た記事を自動で表に出すため、毎日サイトを再ビルドします。
+# 静的サイトなので「再ビルドされて初めて」新しい記事が公開されます。
+# 仕組み: 空コミットを push → Cloudflare が自動で再デプロイ。
+
+on:
+  schedule:
+    - cron: "10 15 * * *"   # 毎日 00:10 JST (= 15:10 UTC)
+  workflow_dispatch: {}       # 手動でも実行できるように
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 空コミットを作成して Cloudflare の再デプロイをトリガー
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: 日次リビルド（日付公開の反映）"
+          git push

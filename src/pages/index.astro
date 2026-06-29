@@ -2,12 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AdSlot from "../components/AdSlot.astro";
 import ComparisonTable from "../components/ComparisonTable.astro";
-import { getCollection } from "astro:content";
 import { site } from "../config/site";
+import { getPublishedArticles } from "../utils/posts";
 
-const latest = (await getCollection("articles", ({ data }) => !data.draft))
-  .sort((a, b) => Date.parse(b.data.publishedAt) - Date.parse(a.data.publishedAt))
-  .slice(0, 4);
+const latest = (await getPublishedArticles()).slice(0, 4);
 
 // よくある質問（表示内容と構造化データを一致させる）
 const faqs = [
