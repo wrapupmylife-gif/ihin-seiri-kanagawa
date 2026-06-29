@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" role="img" aria-label="穏やかな山並みと朝の光">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f4ee"/>
+      <stop offset="0.65" stop-color="#f1efe8"/>
+      <stop offset="1" stop-color="#eaeee9"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f3ead6"/>
+      <stop offset="0.6" stop-color="#f0e8d8" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#f0e8d8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 空 -->
+  <rect width="1600" height="600" fill="url(#sky)"/>
+
+  <!-- やわらかな朝日 -->
+  <circle cx="1230" cy="200" r="260" fill="url(#sun)"/>
+  <circle cx="1230" cy="200" r="78" fill="#efe6d2" opacity="0.7"/>
+
+  <!-- 遠くの山並み（霞んで見える） -->
+  <path d="M0,300 C 250,232 470,268 720,238 C 980,206 1240,228 1600,252 L1600,600 L0,600 Z"
+        fill="#294b6b" opacity="0.10"/>
+
+  <!-- 中景の丘 -->
+  <path d="M0,372 C 300,322 540,366 820,332 C 1090,300 1330,332 1600,352 L1600,600 L0,600 Z"
+        fill="#7e9a86" opacity="0.22"/>
+
+  <!-- うっすらと立つ霞 -->
+  <ellipse cx="700" cy="392" rx="620" ry="26" fill="#f5f2ec" opacity="0.5"/>
+
+  <!-- 手前の丘 -->
+  <path d="M0,452 C 250,414 520,452 800,428 C 1060,406 1320,442 1600,420 L1600,600 L0,600 Z"
+        fill="#7e9a86" opacity="0.40"/>
+
+  <!-- 静かに飛ぶ鳥 -->
+  <g stroke="#5a6470" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.5">
+    <path d="M980,150 q 11,-9 22,0 q 11,-9 22,0"/>
+    <path d="M1045,178 q 9,-7 18,0 q 9,-7 18,0"/>
+    <path d="M935,196 q 8,-6 16,0 q 8,-6 16,0"/>
+  </g>
+</svg>

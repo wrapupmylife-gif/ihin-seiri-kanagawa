@@ -138,7 +138,26 @@ const faqJsonLd = {
 </BaseLayout>
 
 <style>
-  .hero { padding: 72px 0 56px; }
+  .hero {
+    position: relative;
+    padding: 100px 0 96px;
+    background: var(--paper) url("/hero.svg") center bottom / cover no-repeat;
+    overflow: hidden;
+  }
+  /* 文字を読みやすくする淡いオーバーレイ（左ほど濃く、右の山並みは見せる） */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      95deg,
+      rgba(245, 242, 236, 0.93) 0%,
+      rgba(245, 242, 236, 0.8) 42%,
+      rgba(245, 242, 236, 0.45) 72%,
+      rgba(245, 242, 236, 0.2) 100%
+    );
+  }
+  .hero .wrap { position: relative; z-index: 1; }
   .hero h1 { margin: 8px 0 18px; }
   .lead { font-size: 1.05rem; color: var(--ink-soft); max-width: 38em; margin: 0 0 28px; }
   .intro { max-width: 44em; margin: 8px 0 28px; }
