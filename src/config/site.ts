@@ -13,7 +13,7 @@ export const site = {
   // OGP/HTMLのロケール
   locale: "ja_JP",
   // 公開URL（astro.config.mjs の site と揃える）
-  url: "https://example.com",
+  url: "https://ihin-seiri-kanagawa.wrapupmylife.workers.dev",
   // 対応エリア（記事・比較表の絞り込みやSEOの軸に使う）
   area: "神奈川県",
   // 対応エリアは下記の区分に分けて扱う（比較表・導線の軸）。
