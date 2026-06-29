@@ -12,7 +12,7 @@ import { site } from "../config/site";
         <tr><th>サイト名</th><td>{site.name}</td></tr>
         <tr><th>運営者</th><td>{site.operator.name}</td></tr>
         <tr><th>対応エリア</th><td>{site.area}（{site.regions.map((r) => r.name).join("／")}）</td></tr>
-        <tr><th>連絡先</th><td><a href={`mailto:${site.operator.contact}`}>{site.operator.contact}</a></td></tr>
+        <tr><th>連絡先</th><td><a href={site.contactForm} target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a></td></tr>
       </tbody>
     </table>
     <p class="muted" style="margin-top:24px">

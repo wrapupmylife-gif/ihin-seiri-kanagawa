@@ -47,6 +47,10 @@ export const site = {
       cities: ["大磯町", "二宮町", "中井町", "小田原市", "南足柄市", "足柄上郡", "足柄下郡"],
     },
   ],
+  // お問い合わせ・広告掲載の依頼フォーム（Googleフォーム等）。
+  // メールアドレスは公開せず、このフォームに誘導する。
+  contactForm:
+    "https://docs.google.com/forms/d/e/1FAIpQLScUd4Eu6tJMKmI-OXGM__ffSfDj3rnD_l1--Vn0tAKtG36-ag/viewform",
   // 運営者情報（運営者ページ・フッターに表示）
   operator: {
     name: "運営者名（個人/屋号）",

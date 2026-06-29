@@ -29,7 +29,7 @@ import { site } from "../config/site";
 
     <h2>掲載までの流れ</h2>
     <ol>
-      <li>お問い合わせ（下記メール）</li>
+      <li>お問い合わせ（下記フォーム）</li>
       <li>掲載枠・期間・条件のご相談</li>
       <li>原稿・リンク先のご確認</li>
       <li>掲載開始</li>
@@ -37,14 +37,13 @@ import { site } from "../config/site";
 
     <h2>お問い合わせ</h2>
     <p>
-      掲載に関するお問い合わせは
-      <a href={`mailto:${site.operator.contact}`}>{site.operator.contact}</a>
-      までご連絡ください。
+      掲載に関するお問い合わせは、下記のフォームよりご連絡ください。
+      内容を確認のうえ、担当者よりご返信いたします。
     </p>
-    <!--
-      営業着地用のページ。メール導線にしてあるが、
-      問い合わせフォームを置く場合は外部フォーム(Google Form等)に
-      リンクするのが静的サイトでは簡単。フォーム埋め込みは送信処理が必要。
-    -->
+    <p>
+      <a class="btn" href={site.contactForm} target="_blank" rel="noopener noreferrer">
+        広告掲載の問い合わせフォームへ
+      </a>
+    </p>
   </section>
 </BaseLayout>
