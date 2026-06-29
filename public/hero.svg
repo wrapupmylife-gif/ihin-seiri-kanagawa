@@ -1,43 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" role="img" aria-label="穏やかな山並みと朝の光">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="夕暮れの空">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#f7f4ee"/>
-      <stop offset="0.65" stop-color="#f1efe8"/>
-      <stop offset="1" stop-color="#eaeee9"/>
+    <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#3f4f72"/>
+      <stop offset="0.30" stop-color="#6f6a8a"/>
+      <stop offset="0.55" stop-color="#a87f8a"/>
+      <stop offset="0.74" stop-color="#d99a7e"/>
+      <stop offset="0.88" stop-color="#f0bd86"/>
+      <stop offset="1"    stop-color="#f7d9a6"/>
     </linearGradient>
-    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#f3ead6"/>
-      <stop offset="0.6" stop-color="#f0e8d8" stop-opacity="0.6"/>
-      <stop offset="1" stop-color="#f0e8d8" stop-opacity="0"/>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"   stop-color="#fff3da"/>
+      <stop offset="0.35" stop-color="#ffd9a0" stop-opacity="0.9"/>
+      <stop offset="0.7" stop-color="#f0a878" stop-opacity="0.35"/>
+      <stop offset="1"   stop-color="#f0a878" stop-opacity="0"/>
     </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+    </filter>
   </defs>
 
-  <!-- 空 -->
-  <rect width="1600" height="600" fill="url(#sky)"/>
+  <!-- 夕暮れの空 -->
+  <rect width="1600" height="600" fill="url(#dusk)"/>
 
-  <!-- やわらかな朝日 -->
-  <circle cx="1230" cy="200" r="260" fill="url(#sun)"/>
-  <circle cx="1230" cy="200" r="78" fill="#efe6d2" opacity="0.7"/>
+  <!-- 太陽の大きなにじみ -->
+  <circle cx="1120" cy="430" r="360" fill="url(#glow)"/>
+  <!-- 沈みかけの太陽 -->
+  <circle cx="1120" cy="438" r="62" fill="#fff0d2" opacity="0.92" filter="url(#soft)"/>
+  <circle cx="1120" cy="438" r="46" fill="#fff4dd" opacity="0.95"/>
 
-  <!-- 遠くの山並み（霞んで見える） -->
-  <path d="M0,300 C 250,232 470,268 720,238 C 980,206 1240,228 1600,252 L1600,600 L0,600 Z"
-        fill="#294b6b" opacity="0.10"/>
+  <!-- 雲の帯（ぼかしで写真風に） -->
+  <g filter="url(#soft)">
+    <ellipse cx="430" cy="150" rx="380" ry="20" fill="#7a7390" opacity="0.45"/>
+    <ellipse cx="980" cy="120" rx="300" ry="15" fill="#8a7f92" opacity="0.4"/>
+    <ellipse cx="700" cy="250" rx="520" ry="22" fill="#caa18c" opacity="0.5"/>
+    <ellipse cx="1180" cy="300" rx="420" ry="20" fill="#e6ad84" opacity="0.55"/>
+    <ellipse cx="320" cy="330" rx="360" ry="18" fill="#d89e84" opacity="0.5"/>
+    <ellipse cx="850" cy="370" rx="600" ry="20" fill="#f0bd8e" opacity="0.5"/>
+  </g>
 
-  <!-- 中景の丘 -->
-  <path d="M0,372 C 300,322 540,366 820,332 C 1090,300 1330,332 1600,352 L1600,600 L0,600 Z"
-        fill="#7e9a86" opacity="0.22"/>
+  <!-- 遠い水平線のかすみ -->
+  <rect x="0" y="486" width="1600" height="40" fill="#f3cf9c" opacity="0.35" filter="url(#soft)"/>
 
-  <!-- うっすらと立つ霞 -->
-  <ellipse cx="700" cy="392" rx="620" ry="26" fill="#f5f2ec" opacity="0.5"/>
-
-  <!-- 手前の丘 -->
-  <path d="M0,452 C 250,414 520,452 800,428 C 1060,406 1320,442 1600,420 L1600,600 L0,600 Z"
-        fill="#7e9a86" opacity="0.40"/>
+  <!-- 遠景の陸地シルエット（空メインなので低く） -->
+  <path d="M0,512 C 280,500 520,508 820,500 C 1100,492 1340,502 1600,496 L1600,600 L0,600 Z"
+        fill="#48405a" opacity="0.55"/>
+  <path d="M0,536 C 320,528 560,536 880,530 C 1160,524 1380,532 1600,528 L1600,600 L0,600 Z"
+        fill="#2b2740" opacity="0.7"/>
 
   <!-- 静かに飛ぶ鳥 -->
-  <g stroke="#5a6470" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.5">
-    <path d="M980,150 q 11,-9 22,0 q 11,-9 22,0"/>
-    <path d="M1045,178 q 9,-7 18,0 q 9,-7 18,0"/>
-    <path d="M935,196 q 8,-6 16,0 q 8,-6 16,0"/>
+  <g stroke="#2b2740" stroke-width="2.6" fill="none" stroke-linecap="round" opacity="0.55">
+    <path d="M560,140 q 12,-9 24,0 q 12,-9 24,0"/>
+    <path d="M620,168 q 9,-7 18,0 q 9,-7 18,0"/>
+    <path d="M505,182 q 8,-6 16,0 q 8,-6 16,0"/>
   </g>
+
+  <!-- 写真風の粒状感 -->
+  <rect width="1600" height="600" filter="url(#grain)" opacity="0.5"/>
 </svg>
