@@ -22,6 +22,15 @@ const d = entry.data;
 
 const pageUrl = new URL(`/articles/${entry.slug}/`, site.url).href;
 
+// 関連記事：同じカテゴリを優先し、足りなければ他カテゴリで補って最大4件。
+const publishedExceptThis = (await getPublishedArticles()).filter(
+  (a) => a.slug !== entry.slug,
+);
+const related = [
+  ...publishedExceptThis.filter((a) => a.data.category === d.category),
+  ...publishedExceptThis.filter((a) => a.data.category !== d.category),
+].slice(0, 4);
+
 const schema = [
   {
     "@context": "https://schema.org",
@@ -83,6 +92,22 @@ const schema = [
 
     <!-- 記事末の広告枠（有料掲載・PR表記つき） -->
     <AdSlot slot="article-bottom" />
+
+    {related.length > 0 && (
+      <aside class="related" aria-label="関連記事">
+        <h2>関連記事</h2>
+        <ul>
+          {related.map((a) => (
+            <li>
+              <a href={`/articles/${a.slug}/`}>
+                <span class="cat">{a.data.category}</span>
+                <span class="ttl">{a.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
   </article>
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -109,4 +134,13 @@ const schema = [
   .prose :global(li) { margin: 0.4em 0; }
   .prose :global(hr) { border: none; border-top: 1px solid var(--line); margin: 2.4em 0; }
   .prose :global(em) { color: var(--ink-soft); }
+
+  .related { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .related h2 { margin: 0 0 16px; font-size: 1.25rem; }
+  .related ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .related li { background: var(--paper-deep); border: 1px solid var(--line); border-radius: var(--radius); }
+  .related a { display: block; padding: 16px 18px; text-decoration: none; }
+  .related .cat { font-size: 0.72rem; color: var(--sei); font-weight: 700; letter-spacing: 0.08em; }
+  .related .ttl { display: block; margin-top: 6px; font-family: var(--font-serif); font-size: 1.02rem; color: var(--ink); line-height: 1.5; }
+  .related a:hover .ttl { color: var(--ai); }
 </style>
