@@ -3,6 +3,9 @@
 // 広告枠（有料掲載）。slot を渡すと src/data/ads.ts から該当広告を描画。
 // 必ず「広告」バッジ + 「有料掲載」の注記 + rel="sponsored" を出す。
 // これにより、編集記事との見分けがつき、ステマ規制・景表法に対応する。
+//
+// 有効な広告（active:true）が無いスロットでは、架空の広告主を出さず、
+// 代わりに「広告募集」枠を表示して掲載案内（/advertise/）へ誘導する。
 // =============================================================
 import PrBadge from "./PrBadge.astro";
 import { adsForSlot, adsForArea, type Ad } from "../data/ads";
@@ -14,6 +17,10 @@ interface Props {
 }
 const { slot, region } = Astro.props;
 const items = slot === "area" && region ? adsForArea(region) : adsForSlot(slot);
+
+// 有効な広告が無いときに「広告募集」枠を出すスロット（出し過ぎ防止のため限定）。
+const recruitSlots: Ad["slot"][] = ["top", "article-bottom"];
+const showRecruit = items.length === 0 && recruitSlots.includes(slot);
 ---
 
 {items.length > 0 && (
@@ -31,6 +38,17 @@ const items = slot === "area" && region ? adsForArea(region) : adsForSlot(slot);
         </a>
       </div>
     ))}
+  </aside>
+)}
+
+{showRecruit && (
+  <aside class="ad-recruit" aria-label="広告募集">
+    <span class="recruit-badge">広告募集</span>
+    <p class="recruit-headline">この枠に広告を掲載しませんか？</p>
+    <p class="recruit-body">
+      掲載をご希望の事業者さまを募集しています。エリアを絞った掲載もできます。
+    </p>
+    <a class="btn" href="/advertise/">掲載について見る →</a>
   </aside>
 )}
 
@@ -57,4 +75,25 @@ const items = slot === "area" && region ? adsForArea(region) : adsForSlot(slot);
     margin: 0 0 6px;
   }
   .ad-body { margin: 0 0 16px; font-size: 0.95rem; color: var(--ink-soft); }
+
+  /* 広告募集枠（広告主が未掲載のとき） */
+  .ad-recruit {
+    margin: 32px 0;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    background: var(--paper);
+    text-align: center;
+  }
+  .recruit-badge {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px;
+  }
+  .recruit-headline {
+    font-family: var(--font-serif); font-size: 1.1rem;
+    margin: 12px 0 6px; color: var(--ink);
+  }
+  .recruit-body { margin: 0 0 16px; font-size: 0.92rem; color: var(--ink-soft); }
 </style>

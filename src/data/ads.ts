@@ -34,7 +34,7 @@ export const ads: Ad[] = [
     body: "遺品整理から生前整理、特殊清掃まで。無料で見積もりに伺います。",
     ctaLabel: "無料で見積もりを依頼する",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=top",
-    active: true,
+    active: false,
   },
   {
     id: "ad-article-001",
@@ -44,7 +44,7 @@ export const ads: Ad[] = [
     body: "作業前に総額を提示。ご納得いただいてからの作業です。",
     ctaLabel: "料金の相談をする",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=article",
-    active: true,
+    active: false,
   },
 
   // --- 各エリア比較表の直下に出る広告枠（サンプル） ---
@@ -59,7 +59,7 @@ export const ads: Ad[] = [
     body: "遺品整理・生前整理・特殊清掃まで。横浜市・川崎市は最短即日でお伺いします。",
     ctaLabel: "このエリアで無料見積もりを依頼",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=area-yokohama",
-    active: true,
+    active: false,
   },
   {
     id: "ad-area-shonan",
@@ -70,7 +70,7 @@ export const ads: Ad[] = [
     body: "藤沢・茅ヶ崎・平塚など湘南沿岸エリアに対応。供養品の取り扱いもご相談ください。",
     ctaLabel: "このエリアで無料見積もりを依頼",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=area-shonan",
-    active: true,
+    active: false,
   },
   {
     id: "ad-area-kenou",
@@ -81,7 +81,7 @@ export const ads: Ad[] = [
     body: "県央エリアの遺品整理・不用品回収・買取に対応。お見積もりは無料です。",
     ctaLabel: "このエリアで無料見積もりを依頼",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=area-kenou",
-    active: true,
+    active: false,
   },
   {
     id: "ad-area-seisho",
@@ -92,7 +92,7 @@ export const ads: Ad[] = [
     body: "小田原・南足柄・箱根など西湘エリアに対応。空き家整理もご相談いただけます。",
     ctaLabel: "このエリアで無料見積もりを依頼",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=area-seisho",
-    active: true,
+    active: false,
   },
 ];
 
