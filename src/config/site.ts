@@ -17,7 +17,7 @@ export const site = {
   googleSiteVerification: "",
   // Google アナリティクス(GA4) の測定ID（例: "G-XXXXXXXXXX"）。
   // 設定すると全ページにアクセス計測タグが入る。空なら計測なし。
-  gaId: "",
+  gaId: "G-5Q4P2RB9R5",
   // 公開URL（astro.config.mjs の site と揃える）
   url: "https://ihin-seiri-kanagawa.wrapupmylife.workers.dev",
   // 対応エリア（記事・比較表の絞り込みやSEOの軸に使う）
