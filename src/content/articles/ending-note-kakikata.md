@@ -1,8 +1,8 @@
 ﻿---
 title: "エンディングノートの書き方｜終活の第一歩"
 description: "エンディングノートに何を書けばいいのか、遺言書との違いは何か。気負わず書き始めるための項目と進め方を、終活のはじめの一歩として紹介します。"
-publishedAt: "2026-07-20"
-updatedAt: "2026-07-20"
+publishedAt: "2026-07-03"
+updatedAt: "2026-07-03"
 category: "終活"
 author: "編集部"
 draft: false

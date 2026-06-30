@@ -1,8 +1,8 @@
 ﻿---
 title: "失敗しない遺品整理業者の選び方｜7つのチェックポイント"
 description: "遺品整理業者選びで後悔しないために。見積もり・許可・対応など、依頼前に確認しておきたい7つのポイントをまとめました。"
-publishedAt: "2026-07-27"
-updatedAt: "2026-07-27"
+publishedAt: "2026-07-04"
+updatedAt: "2026-07-04"
 category: "遺品整理"
 author: "編集部"
 draft: false

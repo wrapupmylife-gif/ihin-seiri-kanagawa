@@ -1,8 +1,8 @@
 ﻿---
 title: "遺品整理の費用は何で決まる？見積もり内訳の見方"
 description: "遺品整理の料金が業者ごとに違うのはなぜか。費用を左右する要素と、見積書のどこを見れば安心して比較できるかを解説します。"
-publishedAt: "2026-07-13"
-updatedAt: "2026-07-13"
+publishedAt: "2026-07-02"
+updatedAt: "2026-07-02"
 category: "費用"
 author: "編集部"
 draft: false

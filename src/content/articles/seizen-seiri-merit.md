@@ -1,8 +1,8 @@
 ﻿---
 title: "生前整理のメリット｜家族に残す「安心」とは"
 description: "生前整理は片付けだけが目的ではありません。本人と家族の双方にとってのメリットを、具体的に整理して紹介します。"
-publishedAt: "2026-08-24"
-updatedAt: "2026-08-24"
+publishedAt: "2026-07-08"
+updatedAt: "2026-07-08"
 category: "生前整理"
 author: "編集部"
 draft: false

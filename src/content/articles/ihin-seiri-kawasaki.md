@@ -6,7 +6,7 @@ updatedAt: "2026-07-01"
 category: "遺品整理"
 area: "川崎市"
 author: "編集部"
-draft: false
+draft: true
 ---
 
 > この記事は編集部による中立的な解説です。広告（有料掲載）は「広告」「PR」と明示して区別しています。

@@ -1,8 +1,8 @@
 ﻿---
 title: "遺品整理でよくあるトラブルと、その防ぎ方"
 description: "高額請求や不法投棄など、遺品整理で起こりがちなトラブルの例と、依頼前にできる対策を具体的にまとめました。"
-publishedAt: "2026-09-14"
-updatedAt: "2026-09-14"
+publishedAt: "2026-07-11"
+updatedAt: "2026-07-11"
 category: "遺品整理"
 author: "編集部"
 draft: false

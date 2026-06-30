@@ -1,8 +1,8 @@
 ﻿---
 title: "実家の片付けを無理なく進める5ステップ"
 description: "離れて暮らす実家の片付けは、感情も体力も使う大仕事。家族で揉めず、無理なく進めるための5つのステップを紹介します。"
-publishedAt: "2026-08-03"
-updatedAt: "2026-08-03"
+publishedAt: "2026-07-05"
+updatedAt: "2026-07-05"
 category: "片付け"
 author: "編集部"
 draft: false

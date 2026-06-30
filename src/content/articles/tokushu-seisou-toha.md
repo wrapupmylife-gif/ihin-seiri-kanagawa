@@ -1,8 +1,8 @@
 ﻿---
 title: "特殊清掃とは？対応してもらえる内容と業者選びの基礎知識"
 description: "孤独死や長期の汚れなど、通常清掃では難しい現場に対応するのが特殊清掃です。作業内容と、依頼するときの確認点をやさしく解説します。"
-publishedAt: "2026-08-31"
-updatedAt: "2026-08-31"
+publishedAt: "2026-07-09"
+updatedAt: "2026-07-09"
 category: "特殊清掃"
 author: "編集部"
 draft: false

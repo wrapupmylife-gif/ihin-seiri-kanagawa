@@ -1,8 +1,8 @@
 ﻿---
 title: "遺品の買取で損しないために知っておきたいこと"
 description: "遺品整理では買取で費用を抑えられる場合があります。買取の対象になりやすい品や、査定で気をつけたいポイントを解説します。"
-publishedAt: "2026-08-10"
-updatedAt: "2026-08-10"
+publishedAt: "2026-07-06"
+updatedAt: "2026-07-06"
 category: "費用"
 author: "編集部"
 draft: false

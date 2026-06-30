@@ -1,8 +1,8 @@
 ﻿---
 title: "家族が亡くなった後の手続きカレンダー｜期限のある届出"
 description: "身近な方が亡くなった後は、期限のある手続きが続きます。いつまでに何をすればよいかを時系列で整理しました。"
-publishedAt: "2026-08-17"
-updatedAt: "2026-08-17"
+publishedAt: "2026-07-07"
+updatedAt: "2026-07-07"
 category: "手続き"
 author: "編集部"
 draft: false

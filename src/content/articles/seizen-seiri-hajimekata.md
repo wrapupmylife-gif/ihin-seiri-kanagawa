@@ -1,8 +1,8 @@
 ﻿---
 title: "生前整理は何から始める？元気なうちにやることリスト"
 description: "生前整理を始めたいけれど何から手をつければいいか分からない方へ。優先順位の付け方と、無理なく続けるための最初のステップをまとめました。"
-publishedAt: "2026-07-06"
-updatedAt: "2026-07-06"
+publishedAt: "2026-07-01"
+updatedAt: "2026-07-01"
 category: "生前整理"
 author: "編集部"
 draft: false
