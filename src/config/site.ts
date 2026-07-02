@@ -32,6 +32,12 @@ export const site = {
       cities: ["横浜市", "川崎市"],
     },
     {
+      id: "yokosuka-miura",
+      name: "横須賀・三浦",
+      summary: "横須賀・三浦・葉山の三浦半島エリア。",
+      cities: ["横須賀市", "三浦市", "葉山町"],
+    },
+    {
       id: "shonan",
       name: "湘南（鎌倉〜平塚）",
       summary: "鎌倉から平塚までの湘南沿岸エリア。",
