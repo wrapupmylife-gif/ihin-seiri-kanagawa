@@ -70,7 +70,7 @@ export const ads: Ad[] = [
     body: "三浦半島（横須賀・三浦・葉山）の遺品整理・特殊清掃に対応。まずは無料見積もりから。",
     ctaLabel: "このエリアで無料見積もりを依頼",
     href: "https://example.com/lp?utm_source=ihin-guide&utm_medium=ad&utm_campaign=area-yokosuka",
-    active: true,
+    active: false,
   },
   {
     id: "ad-area-shonan",
