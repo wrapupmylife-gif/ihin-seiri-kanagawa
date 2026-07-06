@@ -71,7 +71,7 @@ const jsonLd = [
     {noindex
       ? <meta name="robots" content="noindex, nofollow" />
       : <meta name="robots" content="index, follow, max-image-preview:large" />}
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/ihin-seiri/sitemap-index.xml" />
 
     <!-- OGP -->
     <meta property="og:type" content={ogType} />
@@ -104,6 +104,13 @@ const jsonLd = [
 
     <!-- 構造化データ（サイト全体：WebSite + 運営者） -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- 旧 workers.dev ドメインで開かれた場合は本ドメインへ誘導（canonicalと併用） -->
+    <script is:inline>
+      if (location.hostname.endsWith(".workers.dev")) {
+        location.replace("https://kanagawa-shukatsu.com" + location.pathname + location.search + location.hash);
+      }
+    </script>
 
     <!-- Google アナリティクス(GA4)。site.gaId を設定すると有効化。 -->
     {site.gaId && (

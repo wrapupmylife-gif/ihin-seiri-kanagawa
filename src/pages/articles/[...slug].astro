@@ -20,7 +20,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const d = entry.data;
 
-const pageUrl = new URL(`/articles/${entry.slug}/`, site.url).href;
+const pageUrl = new URL(`/ihin-seiri/articles/${entry.slug}/`, site.url).href;
 
 // 関連記事：同じカテゴリを優先し、足りなければ他カテゴリで補って最大4件。
 const publishedExceptThis = (await getPublishedArticles()).filter(
@@ -55,7 +55,7 @@ const schema = [
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: new URL("/articles/", site.url).href,
+        item: new URL("/ihin-seiri/articles/", site.url).href,
       },
       { "@type": "ListItem", position: 3, name: d.title, item: pageUrl },
     ],
@@ -72,9 +72,9 @@ const schema = [
 >
   <article class="section wrap article">
     <nav class="crumbs" aria-label="パンくずリスト">
-      <a href="/">トップ</a>
+      <a href="/ihin-seiri/">トップ</a>
       <span aria-hidden="true">›</span>
-      <a href="/articles/">記事一覧</a>
+      <a href="/ihin-seiri/articles/">記事一覧</a>
       <span aria-hidden="true">›</span>
       <span class="current">{d.category}</span>
     </nav>
@@ -99,7 +99,7 @@ const schema = [
         <ul>
           {related.map((a) => (
             <li>
-              <a href={`/articles/${a.slug}/`}>
+              <a href={`/ihin-seiri/articles/${a.slug}/`}>
                 <span class="cat">{a.data.category}</span>
                 <span class="ttl">{a.data.title}</span>
               </a>
