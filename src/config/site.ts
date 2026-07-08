@@ -19,7 +19,7 @@ export const site = {
   // 設定すると全ページにアクセス計測タグが入る。空なら計測なし。
   gaId: "G-5Q4P2RB9R5",
   // 公開URL（astro.config.mjs の site と揃える）
-  url: "https://kanagawa-shukatsu.com/ihin-seiri",
+  url: "https://kanagawashukatsu.com/ihin-seiri",
   // 対応エリア（記事・比較表の絞り込みやSEOの軸に使う）
   area: "神奈川県",
   // 対応エリアは下記の区分に分けて扱う（比較表・導線の軸）。

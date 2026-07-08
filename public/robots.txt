@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# 本サイトは kanagawa-shukatsu.com/ihin-seiri/ のサブディレクトリで公開。
-Sitemap: https://kanagawa-shukatsu.com/ihin-seiri/sitemap-index.xml
+# 本サイトは kanagawashukatsu.com/ihin-seiri/ のサブディレクトリで公開。
+Sitemap: https://kanagawashukatsu.com/ihin-seiri/sitemap-index.xml
