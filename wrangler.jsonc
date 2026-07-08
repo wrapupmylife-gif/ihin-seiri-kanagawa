@@ -1,0 +1,12 @@
+{
+  // 静的アセットのみのWorker。dist/ 配下（dist/ihin-seiri/**）をそのまま配信する。
+  // routes によりデプロイ時に kanagawashukatsu.com/ihin-seiri* が自動でこのWorkerに割り当たる。
+  "name": "ihin-seiri-kanagawa",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    { "pattern": "kanagawashukatsu.com/ihin-seiri*", "zone_name": "kanagawashukatsu.com" }
+  ]
+}
