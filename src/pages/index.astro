@@ -59,7 +59,7 @@ const faqJsonLd = {
   <!-- 新着記事のお知らせ（最新の公開記事を自動表示） -->
   {latest[0] && (
     <div class="wrap">
-      <a class="news-bar" href={`/articles/${latest[0].slug}/`}>
+      <a class="news-bar" href={`/ihin-seiri/articles/${latest[0].slug}/`}>
         <span class="news-badge">新着記事</span>
         <time class="news-date" datetime={latest[0].data.publishedAt}>
           {latest[0].data.publishedAt.replaceAll("-", ".")}
@@ -122,7 +122,7 @@ const faqJsonLd = {
       <ul class="cards">
         {latest.map((a) => (
           <li>
-            <a href={`/articles/${a.slug}/`}>
+            <a href={`/ihin-seiri/articles/${a.slug}/`}>
               <span class="cat">{a.data.category}</span>
               <span class="ttl">{a.data.title}</span>
               <span class="muted">{a.data.description}</span>
@@ -130,7 +130,7 @@ const faqJsonLd = {
           </li>
         ))}
       </ul>
-      <p style="margin-top:24px"><a href="/articles/">記事一覧を見る →</a></p>
+      <p style="margin-top:24px"><a href="/ihin-seiri/articles/">記事一覧を見る →</a></p>
     </div>
   </section>
 
@@ -141,7 +141,7 @@ const faqJsonLd = {
   .hero {
     position: relative;
     padding: 100px 0 96px;
-    background: var(--paper) url("/hero.svg") center center / cover no-repeat;
+    background: var(--paper) url("/ihin-seiri/hero.svg") center center / cover no-repeat;
     overflow: hidden;
   }
   /* 文字を読みやすくする淡いオーバーレイ（左ほど濃く、右の山並みは見せる） */
