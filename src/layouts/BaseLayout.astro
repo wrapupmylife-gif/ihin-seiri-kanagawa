@@ -29,7 +29,12 @@ const {
 } = Astro.props;
 
 const pageTitle = title ? `${title}｜${site.name}` : `${site.name}｜${site.tagline}`;
-const canonical = new URL(Astro.url.pathname, site.url).href;
+// canonical は末尾スラッシュありに統一（sitemap・内部リンク・OGP url と揃え、
+// Search Console の「代替ページ（canonical）」重複扱いを避ける）
+const pathWithSlash = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : Astro.url.pathname + "/";
+const canonical = new URL(pathWithSlash, site.url).href;
 const ogImageRel = image || site.ogImage;
 const ogImage = ogImageRel ? new URL(ogImageRel, site.url).href : "";
 
