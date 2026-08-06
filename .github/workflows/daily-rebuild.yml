@@ -6,15 +6,21 @@ name: Daily rebuild (date-based publishing)
 
 on:
   schedule:
-    - cron: "10 15 * * *"   # 毎日 00:10 JST (= 15:10 UTC)
+    - cron: "37 15 * * *"   # 毎日 00:37 JST (= 15:37 UTC)。混雑を避けるため半端な分に。
   workflow_dispatch: {}       # 手動でも実行できるように
 
 permissions:
   contents: write
 
+# 同時実行を防ぐ（前の実行が残っていても取り消さず、順番に流す）
+concurrency:
+  group: daily-rebuild
+  cancel-in-progress: false
+
 jobs:
   rebuild:
     runs-on: ubuntu-latest
+    timeout-minutes: 5          # ハングしても5分で失敗させ、長時間の実行を防ぐ
     steps:
       - uses: actions/checkout@v4
 
@@ -22,5 +28,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 念のため最新化してから空コミット（非fast-forwardでの失敗を防ぐ）
+          git pull --rebase origin main || true
           git commit --allow-empty -m "chore: 日次リビルド（日付公開の反映）"
           git push
