@@ -3,7 +3,7 @@ title: "小田原市の遺品整理｜西湘エリアの費用の目安と業者
 description: "小田原市など西湘エリアで遺品整理を依頼する際の費用相場の目安、業者の選び方、対応エリアの確認方法をまとめました。"
 publishedAt: "2026-07-03"
 updatedAt: "2026-07-03"
-category: "遺品整理"
+category: "エリア"
 area: "小田原市"
 author: "編集部"
 draft: true

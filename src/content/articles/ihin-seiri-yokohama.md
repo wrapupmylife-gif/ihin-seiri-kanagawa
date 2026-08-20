@@ -3,7 +3,7 @@ title: "横浜市の遺品整理｜費用の目安と業者の選び方"
 description: "横浜市で遺品整理を依頼する前に知っておきたい費用相場の目安、業者選びのポイント、対応エリアの確認方法をまとめました。"
 publishedAt: "2026-06-30"
 updatedAt: "2026-06-30"
-category: "遺品整理"
+category: "エリア"
 area: "横浜市"
 author: "編集部"
 draft: false

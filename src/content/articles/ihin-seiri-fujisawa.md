@@ -3,7 +3,7 @@ title: "藤沢市の遺品整理｜湘南エリアの費用の目安と業者選
 description: "藤沢市など湘南エリアで遺品整理を依頼する際の費用相場の目安、業者の選び方、対応エリアの確認方法をまとめました。"
 publishedAt: "2026-07-02"
 updatedAt: "2026-07-02"
-category: "遺品整理"
+category: "エリア"
 area: "藤沢市"
 author: "編集部"
 draft: true
