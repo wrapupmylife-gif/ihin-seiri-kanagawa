@@ -11,12 +11,13 @@ import { site } from "../config/site";
       <tbody>
         <tr><th>サイト名</th><td>{site.name}</td></tr>
         <tr><th>運営者</th><td>{site.operator.name}</td></tr>
+        <tr><th>運営形態</th><td>神奈川県の終活分野に特化した、独立系の比較・情報メディア</td></tr>
         <tr><th>対応エリア</th><td>{site.area}（{site.regions.map((r) => r.name).join("／")}）</td></tr>
         <tr><th>連絡先</th><td><a href={site.contactForm} target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a></td></tr>
       </tbody>
     </table>
     <p class="muted" style="margin-top:24px">
-      当サイトは情報提供を目的とし、掲載事業者のサービスを保証するものではありません。
+      {site.name}は、かながわ終活ナビが運営する、神奈川県の終活分野に特化した独立系の比較・情報メディアです。特定の事業者・団体には属さず、中立の立場で情報をまとめています。当サイトは情報提供を目的とし、掲載事業者のサービスを保証するものではありません。
       広告の扱いは<a href="/ihin-seiri/disclosure/">広告・PR表記ポリシー</a>をご覧ください。
     </p>
   </section>
